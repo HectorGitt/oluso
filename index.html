@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Olùṣọ́: catch the mule ring before the cash-out</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Noto+Sans:wght@400;600&family=Space+Grotesk:wght@500;600;700&display=swap">
+<style>
+:root{
+  --bg:#F3F5F7; --surface:#FCFDFD; --line:#DCE3E8; --text:#14202B; --muted:#4E6170;
+  --red:#C42F37; --teal:#0E7A64; --tealsoft:#D5F5EC;
+  --band:#13212D; --band2:#1C2D3C; --bandline:#2A4257; --bandtext:#EEF2F4; --bandmuted:#A3B5C4;
+  --coral:#FF8A5B; --ringred:#F2545B; --crimson:#D93A63; --tealbright:#3FD3B0;
+  --wm-base:var(--text); --wm-mark:var(--teal);
+  --head:'Space Grotesk', 'IBM Plex Sans', Arial, sans-serif;
+  --body:'IBM Plex Sans', Arial, sans-serif;
+  --mono:'IBM Plex Mono', 'Courier New', monospace;
+  --yo:'Noto Sans', 'IBM Plex Sans', Arial, sans-serif;
+  color-scheme: light;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F1A24; --surface:#18283A; --line:#2A4257; --text:#EAF0F4; --muted:#A3B5C4;
+    --red:#F05A5F; --teal:#3FD3B0; --tealsoft:#173D3E; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0F1A24; --surface:#18283A; --line:#2A4257; --text:#EAF0F4; --muted:#A3B5C4;
+  --red:#F05A5F; --teal:#3FD3B0; --tealsoft:#173D3E; color-scheme: dark;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 72px);height:100%}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--body);font-size:18px;line-height:1.55;-webkit-font-smoothing:antialiased;height:100%}
+img,svg,canvas{max-width:100%}
+a{color:inherit}
+button{font:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--tealbright);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+.yo{font-family:var(--yo)}
+.wm{display:block;height:100%;width:auto}
+
+/* ---------- header ---------- */
+.site-head{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.site-head .wrap{display:flex;align-items:center;gap:28px;height:68px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;height:40px}
+.brand .mk{width:38px;height:38px;flex:none}
+.brand .wmbox{height:34px}
+.site-nav{display:flex;gap:24px;margin-left:auto}
+.site-nav a{text-decoration:none;color:var(--muted);font-size:16px}
+.site-nav a:hover{color:var(--text)}
+.btn{display:inline-flex;align-items:center;gap:10px;border:0;border-radius:12px;padding:12px 20px;font-family:var(--head);font-weight:600;font-size:17px;text-decoration:none;line-height:1.2}
+.btn-primary{background:linear-gradient(135deg,#5EEAC4,#16A386);color:#0E1922}
+.btn-primary:hover{filter:brightness(1.05)}
+.btn-ghost{background:transparent;color:var(--bandtext);border:1px solid #3A5670}
+.btn-ghost:hover{border-color:var(--bandmuted)}
+@media (max-width:760px){.site-nav{display:none}.site-head .btn{margin-left:auto;padding:10px 14px;font-size:15px}}
+
+/* ---------- hero ---------- */
+.hero{background:radial-gradient(circle at 78% 45%,#26445E 0%,#13212D 58%);color:var(--bandtext);--wm-base:#EEF2F4;--wm-mark:#3FD3B0;overflow:hidden}
+.hero .wrap{max-width:1320px;display:grid;grid-template-columns:minmax(0,0.82fr) minmax(0,1.3fr);gap:48px;align-items:center;padding-top:72px;padding-bottom:80px}
+.hero h1{font-family:var(--head);font-weight:700;font-size:clamp(40px,5.4vw,68px);line-height:1.02;letter-spacing:-0.02em;margin:22px 0 22px;max-width:12ch}
+.hero .lede{font-size:20px;color:var(--bandmuted);max-width:34em;margin:0 0 30px}
+.hero .meaning{display:flex;align-items:center;gap:18px}
+.hero .meaning .wmbox{height:58px}
+.hero .meaning p{margin:0;padding-left:18px;border-left:2px solid var(--bandline);color:var(--bandmuted);font-size:16px;line-height:1.45}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:14px}
+.hero-live{position:relative;border-radius:18px;background:#1A2B3A;border:1px solid #2C4458;box-shadow:0 30px 80px rgba(0,0,0,.35);overflow:hidden}
+.hero-live canvas{display:block;width:100%;aspect-ratio:836/488}
+.hero-live .bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px;border-bottom:1px solid #2C4458;font-size:14px;color:#93A7B8}
+.hero-live .bar strong{color:#EAF0F4;font-weight:600}
+.live-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#2FC4A0;margin-right:8px;box-shadow:0 0 0 0 rgba(47,196,160,.6);animation:pulse 1.8s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 8px rgba(47,196,160,0)}100%{box-shadow:0 0 0 0 rgba(47,196,160,0)}}
+.hero-live .status{position:absolute;left:16px;bottom:14px;right:16px;font-size:14px;color:#EAF0F4;background:rgba(14,25,34,.82);border:1px solid #2C4458;border-radius:10px;padding:10px 14px;transition:border-color .3s}
+.hero-live .status.alert{border-color:#E8484E}
+@media (max-width:900px){.hero .wrap{grid-template-columns:1fr;padding-top:48px}.hero h1{max-width:none}}
+
+/* ---------- sections ---------- */
+section.block{padding:96px 0}
+.block h2{font-family:var(--head);font-weight:700;font-size:clamp(32px,4vw,48px);line-height:1.08;letter-spacing:-0.015em;margin:0 0 18px;max-width:20ch}
+.block .intro{color:var(--muted);font-size:19px;max-width:40em;margin:0 0 48px}
+
+/* story */
+.story{background:var(--band);color:var(--bandtext)}
+.story .amount{font-family:var(--head);font-weight:700;font-size:clamp(72px,13vw,168px);line-height:.95;letter-spacing:-0.04em;margin:0;background:linear-gradient(135deg,#FF8A5B,#F2545B 55%,#D93A63);-webkit-background-clip:text;background-clip:text;color:transparent}
+.story .gone{font-family:var(--head);font-weight:600;font-size:clamp(28px,4vw,48px);margin:8px 0 48px;letter-spacing:-0.01em}
+.timeline{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px;list-style:none;margin:0;padding:0}
+.timeline li{border-top:4px solid var(--c,#EEF2F4);padding-top:16px}
+.timeline .when{font-family:var(--head);font-weight:700;font-size:20px;color:var(--c,#EEF2F4);display:block;margin-bottom:6px}
+.timeline p{margin:0;color:var(--bandtext);font-size:17px}
+.story .note{color:var(--bandmuted);font-size:15px;margin:40px 0 0}
+@media (max-width:820px){.timeline{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.timeline{grid-template-columns:1fr}}
+
+/* how */
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;counter-reset:step;position:relative}
+.step{padding:0 32px 0 0;position:relative}
+.step .num{font-family:var(--head);font-weight:700;font-size:22px;width:52px;height:52px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#FF8A5B,#F2545B 55%,#D93A63);color:#13212D;position:relative;z-index:1}
+.step::before{content:"";position:absolute;left:52px;right:0;top:25px;height:2px;background:var(--line)}
+.step:last-child::before{display:none}
+.step h3{font-family:var(--head);font-size:30px;margin:22px 0 10px}
+.step p{margin:0;color:var(--muted);max-width:26em}
+@media (max-width:820px){.steps{grid-template-columns:1fr;gap:36px}.step::before{display:none}}
+
+/* different */
+.diff{display:grid;grid-template-columns:1fr 1fr;gap:28px 48px}
+.diff div{border-left:4px solid var(--c);padding:4px 0 4px 22px}
+.diff h3{font-family:var(--head);font-size:24px;margin:0 0 8px}
+.diff p{margin:0;color:var(--muted)}
+@media (max-width:760px){.diff{grid-template-columns:1fr}}
+
+/* fit */
+.pipe{display:flex;align-items:stretch;gap:0;overflow-x:auto;padding-bottom:6px}
+.pipe .node{flex:1 0 150px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px 16px}
+.pipe .node b{display:block;font-family:var(--head);font-size:19px;margin-bottom:6px}
+.pipe .node span{color:var(--muted);font-size:15px;line-height:1.4;display:block}
+.pipe .node.human{background:linear-gradient(135deg,#5EEAC4,#16A386);border-color:transparent;color:#13212D}
+.pipe .node.human span{color:#13212D}
+.pipe .arrow{flex:0 0 28px;display:grid;place-items:center;color:var(--muted)}
+.audit-band{margin-top:16px;background:var(--band);color:var(--bandtext);border-radius:14px;padding:16px 22px;text-align:center;font-size:17px}
+
+/* targets */
+.targets{background:linear-gradient(135deg,#5EEAC4 0%,#16A386 100%);color:#13212D}
+.targets h2{color:#13212D}
+.targets .intro{color:#13212D}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:32px}
+.stats div{border-top:3px solid #13212D;padding-top:18px}
+.stats b{display:block;font-family:var(--head);font-size:clamp(44px,6vw,76px);line-height:1;letter-spacing:-0.03em}
+.stats span{display:block;margin-top:10px;font-size:17px}
+@media (max-width:820px){.stats{grid-template-columns:1fr 1fr}}
+
+/* team */
+.team{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.person{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:28px}
+.person .top{display:flex;gap:18px;align-items:center;margin-bottom:16px}
+.avatar{width:72px;height:72px;border-radius:50%;display:grid;place-items:center;font-family:var(--head);font-weight:700;font-size:26px;color:#13212D;flex:none}
+.person h3{font-family:var(--head);font-size:24px;margin:0}
+.person .role{color:var(--teal);font-weight:600;margin:2px 0 0}
+.person ul{margin:0;padding-left:20px;color:var(--muted)}
+.person li{margin:4px 0}
+@media (max-width:760px){.team{grid-template-columns:1fr}}
+
+.closing{background:radial-gradient(circle at 20% 30%,#26445E 0%,#13212D 60%);color:var(--bandtext);text-align:left}
+.closing h2{max-width:18ch}
+.closing p{color:var(--bandmuted);max-width:36em;margin:0 0 28px}
+footer.site-foot{padding:28px 0 40px;color:var(--muted);font-size:15px;border-top:1px solid var(--line)}
+
+/* ---------- console (always dark, mirrors the video) ---------- */
+#demo-root{display:none}
+body.in-demo{overflow:hidden;background:#13212D}
+body.in-demo #site{display:none}
+body.in-demo #demo-root{display:block;height:100%}
+.console{--c-bg:#13212D;--c-panel:#1A2B3A;--c-panel2:#22374A;--c-line:#2C4458;--c-text:#EAF0F4;--c-muted:#93A7B8;--c-dim:#5F768A;--c-steel:#5E8DB8;--c-amber:#F2A93B;--c-red:#E8484E;--c-teal:#2FC4A0;--c-ink:#0E1922;
+  --wm-base:#EAF0F4;--wm-mark:#2FC4A0;
+  height:100%;display:grid;grid-template-rows:56px minmax(0,1fr) auto;background:var(--c-bg);color:var(--c-text);font-size:15px;line-height:1.45}
+.c-top{display:flex;align-items:center;gap:22px;background:var(--c-ink);padding:0 20px;min-width:0}
+.c-top .brand{height:30px;gap:8px}
+.c-top .brand .mk{width:28px;height:28px}
+.c-top .brand .wmbox{height:26px}
+.c-tabs{display:flex;gap:4px;height:100%}
+.c-tabs button{background:none;border:0;color:var(--c-muted);padding:0 12px;height:100%;border-bottom:3px solid transparent;font-size:15px}
+.c-tabs button[aria-selected="true"]{color:var(--c-text);font-weight:500;border-bottom-color:var(--c-teal)}
+.c-stats{margin-left:auto;display:flex;align-items:baseline;gap:20px;white-space:nowrap}
+.c-stats span{color:var(--c-muted);font-size:13.5px}
+.c-stats b{font-weight:600;color:var(--c-text);margin-left:6px;font-variant-numeric:tabular-nums}
+.c-stats b.hot{color:var(--c-red)}
+.c-stats .clock{font-family:var(--mono);color:var(--c-text);font-size:15px}
+.c-exit{background:none;border:1px solid var(--c-line);color:var(--c-muted);border-radius:8px;padding:6px 10px;font-size:13.5px}
+.c-exit:hover{color:var(--c-text)}
+.c-main{min-height:0;padding:16px 20px;display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:16px}
+.panel{background:var(--c-panel);border-radius:10px;min-height:0;display:flex;flex-direction:column;overflow:hidden}
+.panel-head{display:flex;align-items:center;gap:16px;padding:12px 16px;border-bottom:1px solid var(--c-line);min-height:46px}
+.panel-head h2{font-size:16px;font-weight:600;margin:0}
+.legend{margin-left:auto;display:flex;gap:14px;align-items:center;font-size:13px;color:var(--c-muted)}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:-1px}
+.pill{display:inline-block;border-radius:999px;padding:3px 10px;font-size:12.5px;font-weight:600;line-height:1.3}
+.pill.muted{background:rgba(147,167,184,.14);color:var(--c-muted);font-weight:500}
+.pill.red{background:rgba(232,72,78,.16);color:#F07A7E}
+.pill.teal{background:rgba(47,196,160,.16);color:var(--c-teal)}
+.pill.amber{background:rgba(242,169,59,.16);color:var(--c-amber)}
+.graph-wrap{position:relative;flex:1;min-height:0}
+.graph-wrap canvas{position:absolute;inset:0;width:100%;height:100%}
+.banner{position:absolute;left:16px;right:16px;top:12px;display:flex;flex-wrap:wrap;gap:4px 16px;align-items:baseline;background:var(--c-ink);border:1px solid var(--c-red);border-left:5px solid var(--c-red);border-radius:10px;padding:10px 16px;opacity:0;transform:translateY(-8px);transition:opacity .4s,transform .4s;pointer-events:none}
+.banner.show{opacity:1;transform:none}
+.banner b{color:var(--c-red);font-size:16px}
+.banner span{color:var(--c-text);font-size:14.5px}
+.held-card{position:absolute;left:16px;bottom:16px;background:var(--c-ink);border:1.5px solid var(--c-teal);border-radius:12px;padding:14px 20px;opacity:0;transform:translateY(8px);transition:opacity .5s,transform .5s;pointer-events:none}
+.held-card.show{opacity:1;transform:none}
+.held-card b{display:block;font-family:var(--head);font-size:30px;color:var(--c-teal);line-height:1.1}
+.held-card span{font-size:14px;color:var(--c-text)}
+.held-card small{display:block;font-size:12.5px;color:var(--c-muted)}
+.queue{overflow:auto;padding:14px 16px;display:flex;flex-direction:column;gap:12px}
+.qempty{margin:auto;text-align:center;color:var(--c-muted)}
+.qempty small{display:block;color:var(--c-dim)}
+.qcard{text-align:left;width:100%;background:var(--c-panel);border:1px solid var(--c-line);border-radius:10px;padding:12px 14px;color:var(--c-text)}
+.qcard.active{background:var(--c-panel2);border:1.5px solid var(--c-red);border-left:5px solid var(--c-red);padding:14px 16px}
+.qcard.enter{animation:slidein .5s ease-out}
+.qcard.active.held{border-color:var(--c-teal)}
+.qcard:hover{filter:brightness(1.08)}
+@keyframes slidein{from{transform:translateX(30px);opacity:0}to{transform:none;opacity:1}}
+.qcard .row{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.qcard h3{margin:0;font-size:16.5px;font-weight:600}
+.qcard p{margin:4px 0 0;color:var(--c-muted);font-size:13.5px}
+.qcard .facts{display:flex;gap:18px;margin:10px 0 4px;font-weight:500}
+.qcard.closed h3{color:var(--c-muted);font-size:14.5px;font-weight:500}
+.qcard.closed p{color:var(--c-dim);font-size:13px}
+.c-foot{display:flex;align-items:center;gap:16px;background:var(--c-ink);padding:12px 20px;min-height:64px}
+.narr{flex:1;font-size:19px;font-weight:500;text-align:center;transition:opacity .35s;min-height:1.4em}
+.ctrls{display:flex;gap:8px;flex:none;align-items:center}
+.ctrls button,.ctrls label{background:var(--c-panel);border:1px solid var(--c-line);color:var(--c-text);border-radius:8px;padding:7px 12px;font-size:13.5px;display:inline-flex;align-items:center;gap:6px}
+.ctrls button.primary{background:var(--c-teal);border-color:var(--c-teal);color:var(--c-ink);font-weight:600}
+.ctrls input{accent-color:var(--c-teal);margin:0}
+.ctrls .scn{color:var(--c-muted);font-size:13px;margin-right:6px}
+/* case view */
+.case-view{grid-column:1 / -1;display:grid;grid-template-rows:auto minmax(0,1fr);gap:14px;min-height:0}
+.case-head{display:flex;flex-wrap:wrap;gap:8px 20px;align-items:flex-start}
+.case-head h2{margin:0;font-size:28px;font-weight:600;line-height:1.1}
+.case-head .sub{color:var(--c-muted);margin-top:4px}
+.case-head .money{margin-left:auto;text-align:right}
+.case-head .money b{display:block;font-size:20px;font-weight:600}
+.case-head .money b.held{color:var(--c-teal)}
+.case-head .money span{color:var(--c-red);font-size:14.5px}
+.case-body{display:grid;grid-template-columns:minmax(0,0.65fr) minmax(0,1fr);gap:16px;min-height:0}
+.case-ring{padding:14px 16px;display:flex;flex-direction:column}
+.case-ring h3,.case-right h3{margin:0;font-size:16px;font-weight:600}
+.case-ring .small{color:var(--c-muted);font-size:13.5px}
+.case-ring svg{flex:1;width:100%;min-height:200px}
+.case-ring .heldnote{color:var(--c-teal);font-size:13.5px;font-weight:500;min-height:1.4em}
+.case-right{padding:14px 18px;display:flex;flex-direction:column;gap:14px;overflow:auto}
+.case-right .hd{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.case-right .hd small{color:var(--c-muted);font-size:13px}
+.narrative{margin:0;font-size:16px;line-height:1.6;min-height:7.5em}
+.narrative .cite{font-family:var(--mono);font-size:14px;color:#7FA8CF}
+.caret{display:inline-block;width:2px;height:1em;background:var(--c-text);vertical-align:-2px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.drivers{display:grid;gap:9px;opacity:0;transition:opacity .4s}
+.drivers.show{opacity:1}
+.drv{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:16px;align-items:center;font-size:14px;color:var(--c-muted)}
+.drv .track{height:10px;border-radius:5px;background:var(--c-line);overflow:hidden}
+.drv .fill{height:100%;width:0;background:var(--c-red);border-radius:5px;transition:width 1.2s cubic-bezier(.2,.7,.2,1)}
+.audit-mini{display:grid;gap:6px;font-family:var(--mono);font-size:13px}
+.audit-mini .r{display:grid;grid-template-columns:72px 64px minmax(0,1.3fr) minmax(0,1.3fr) 72px;gap:10px;animation:fadein .4s}
+.audit-mini .who.off{color:var(--c-teal)}
+.audit-mini .h{color:var(--c-dim);text-align:right}
+.audit-mini .m{color:var(--c-muted)}
+@keyframes fadein{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+.action{border:1.6px solid var(--c-amber);background:var(--c-panel2);border-radius:10px;padding:14px 16px;display:flex;gap:16px;align-items:center;opacity:0;transform:translateY(10px);transition:opacity .45s,transform .45s,border-color .4s}
+.action.show{opacity:1;transform:none}
+.action.done{border-color:var(--c-teal)}
+.action.rejected{border-color:var(--c-dim)}
+.action .lbl{font-size:12.5px;font-weight:600;color:var(--c-amber)}
+.action.done .lbl{color:var(--c-teal)}
+.action.rejected .lbl{color:var(--c-muted)}
+.action h4{margin:4px 0 2px;font-size:17px;font-weight:600}
+.action p{margin:0;color:var(--c-muted);font-size:14px}
+.action .btns{margin-left:auto;display:flex;flex-direction:column;gap:8px;min-width:170px}
+.action .btns button{border-radius:8px;padding:8px 12px;font-size:14.5px;font-weight:600}
+.approve{background:var(--c-teal);color:var(--c-ink);border:0}
+.reject{background:none;color:var(--c-muted);border:1px solid var(--c-muted)}
+.action .auto{font-size:12px;color:var(--c-muted);text-align:center}
+.action .state{background:var(--c-teal);color:var(--c-ink);border-radius:8px;padding:10px 14px;text-align:center;font-weight:600;min-width:170px;margin-left:auto}
+.action .state small{display:block;font-weight:400;font-size:12.5px}
+.action .state.grey{background:var(--c-line);color:var(--c-text)}
+/* lists */
+.list-view{grid-column:1 / -1;overflow:auto}
+.list-view table{width:100%;border-collapse:collapse;font-size:14px}
+.list-view th{text-align:left;color:var(--c-muted);font-weight:500;padding:10px 14px;border-bottom:1px solid var(--c-line);position:sticky;top:0;background:var(--c-panel)}
+.list-view td{padding:10px 14px;border-bottom:1px solid var(--c-line)}
+.list-view td.mono{font-family:var(--mono);font-size:13px}
+.list-view tr.click{cursor:pointer}
+.list-view tr.click:hover td{background:var(--c-panel2)}
+.list-empty{padding:40px;text-align:center;color:var(--c-muted)}
+@media (max-width:1100px){.c-stats .opt{display:none}}
+@media (max-width:860px){
+  .console{height:auto;min-height:100%;grid-template-rows:auto auto auto}
+  body.in-demo{overflow:auto}
+  .c-top{flex-wrap:wrap;gap:8px 16px;padding:10px 14px}
+  .c-tabs{height:40px;order:3;width:100%}
+  .c-exit{display:none}
+  .c-stats{gap:14px}
+  .c-main{grid-template-columns:1fr;padding:12px}
+  .graph-wrap{height:58vh;min-height:340px}
+  .banner{top:auto;bottom:12px}
+  .banner b{font-size:15px}.banner span{font-size:13.5px}
+  .held-card{bottom:auto;top:12px}
+  .queue{max-height:none}
+  .case-body{grid-template-columns:1fr}
+  .case-ring svg{min-height:240px}
+  .c-foot{flex-direction:column;align-items:stretch;position:sticky;bottom:0}
+  .narr{font-size:16px}
+  .ctrls{flex-wrap:wrap;justify-content:center}
+  .action{flex-direction:column;align-items:stretch}
+  .action .btns,.action .state{margin-left:0}
+  .audit-mini .r{grid-template-columns:64px 58px minmax(0,1fr);}
+  .audit-mini .r .m,.audit-mini .r .h{display:none}
+}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div id="site">
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Olùṣọ́ home"><span class="mk" data-mark></span><span class="wmbox"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="wm" role="img" aria-label="Olùṣọ́" viewBox="0 0 277.4 142"> <defs> <g> <g id="wmg-0-0"> <path d="M 33.796875 1.40625 C 24.992188 1.40625 17.992188 -1.007812 12.796875 -5.84375 C 7.597656 -10.675781 5 -17.59375 5 -26.59375 L 5 -43.40625 C 5 -52.40625 7.597656 -59.320312 12.796875 -64.15625 C 17.992188 -68.988281 24.992188 -71.40625 33.796875 -71.40625 C 42.597656 -71.40625 49.597656 -68.988281 54.796875 -64.15625 C 59.992188 -59.320312 62.59375 -52.40625 62.59375 -43.40625 L 62.59375 -26.59375 C 62.59375 -17.59375 59.992188 -10.675781 54.796875 -5.84375 C 49.597656 -1.007812 42.597656 1.40625 33.796875 1.40625 Z M 33.796875 -10.40625 C 38.734375 -10.40625 42.566406 -11.835938 45.296875 -14.703125 C 48.035156 -17.566406 49.40625 -21.398438 49.40625 -26.203125 L 49.40625 -43.796875 C 49.40625 -48.597656 48.035156 -52.429688 45.296875 -55.296875 C 42.566406 -58.160156 38.734375 -59.59375 33.796875 -59.59375 C 28.929688 -59.59375 25.113281 -58.160156 22.34375 -55.296875 C 19.582031 -52.429688 18.203125 -48.597656 18.203125 -43.796875 L 18.203125 -26.203125 C 18.203125 -21.398438 19.582031 -17.566406 22.34375 -14.703125 C 25.113281 -11.835938 28.929688 -10.40625 33.796875 -10.40625 Z M 33.796875 -10.40625 "/> </g> <g id="wmg-0-1"> <path d="M 7 0 L 7 -70 L 19.59375 -70 L 19.59375 0 Z M 7 0 "/> </g> <g id="wmg-0-2"> <path d="M 25.90625 0.796875 C 22.03125 0.796875 18.644531 -0.0820312 15.75 -1.84375 C 12.851562 -3.613281 10.601562 -6.066406 9 -9.203125 C 7.394531 -12.335938 6.59375 -15.9375 6.59375 -20 L 6.59375 -49.59375 L 19.203125 -49.59375 L 19.203125 -21 C 19.203125 -17.269531 20.117188 -14.46875 21.953125 -12.59375 C 23.785156 -10.726562 26.398438 -9.796875 29.796875 -9.796875 C 33.660156 -9.796875 36.660156 -11.078125 38.796875 -13.640625 C 40.929688 -16.210938 42 -19.800781 42 -24.40625 L 42 -49.59375 L 54.59375 -49.59375 L 54.59375 0 L 42.203125 0 L 42.203125 -6.5 L 40.40625 -6.5 C 39.601562 -4.832031 38.097656 -3.195312 35.890625 -1.59375 C 33.691406 0 30.363281 0.796875 25.90625 0.796875 Z M 25.90625 0.796875 "/> </g> <g id="wmg-0-3"> <path d="M 27.59375 1.40625 C 21.132812 1.40625 15.835938 0.00390625 11.703125 -2.796875 C 7.566406 -5.597656 5.066406 -9.597656 4.203125 -14.796875 L 15.796875 -17.796875 C 16.460938 -14.328125 17.878906 -11.925781 20.046875 -10.59375 C 22.210938 -9.257812 24.726562 -8.59375 27.59375 -8.59375 C 30.53125 -8.59375 32.695312 -9.109375 34.09375 -10.140625 C 35.5 -11.179688 36.203125 -12.46875 36.203125 -14 C 36.203125 -15.53125 35.535156 -16.710938 34.203125 -17.546875 C 32.867188 -18.378906 30.734375 -19.0625 27.796875 -19.59375 L 25 -20.09375 C 21.53125 -20.757812 18.363281 -21.675781 15.5 -22.84375 C 12.632812 -24.007812 10.332031 -25.625 8.59375 -27.6875 C 6.863281 -29.757812 6 -32.429688 6 -35.703125 C 6 -40.628906 7.796875 -44.410156 11.390625 -47.046875 C 14.992188 -49.679688 19.726562 -51 25.59375 -51 C 31.132812 -51 35.738281 -49.765625 39.40625 -47.296875 C 43.070312 -44.828125 45.46875 -41.59375 46.59375 -37.59375 L 34.90625 -34 C 34.363281 -36.53125 33.273438 -38.328125 31.640625 -39.390625 C 30.015625 -40.460938 28 -41 25.59375 -41 C 23.195312 -41 21.363281 -40.582031 20.09375 -39.75 C 18.832031 -38.914062 18.203125 -37.765625 18.203125 -36.296875 C 18.203125 -34.703125 18.867188 -33.519531 20.203125 -32.75 C 21.535156 -31.976562 23.332031 -31.394531 25.59375 -31 L 28.40625 -30.5 C 32.132812 -29.832031 35.515625 -28.945312 38.546875 -27.84375 C 41.578125 -26.75 43.976562 -25.179688 45.75 -23.140625 C 47.519531 -21.109375 48.40625 -18.363281 48.40625 -14.90625 C 48.40625 -9.695312 46.519531 -5.675781 42.75 -2.84375 C 38.976562 -0.0078125 33.925781 1.40625 27.59375 1.40625 Z M 27.59375 1.40625 "/> </g> <g id="wmg-0-4"> <path d="M 30.59375 1.40625 C 25.664062 1.40625 21.234375 0.40625 17.296875 -1.59375 C 13.367188 -3.59375 10.269531 -6.492188 8 -10.296875 C 5.726562 -14.097656 4.59375 -18.664062 4.59375 -24 L 4.59375 -25.59375 C 4.59375 -30.925781 5.726562 -35.492188 8 -39.296875 C 10.269531 -43.097656 13.367188 -46 17.296875 -48 C 21.234375 -50 25.664062 -51 30.59375 -51 C 35.53125 -51 39.960938 -50 43.890625 -48 C 47.828125 -46 50.925781 -43.097656 53.1875 -39.296875 C 55.457031 -35.492188 56.59375 -30.925781 56.59375 -25.59375 L 56.59375 -24 C 56.59375 -18.664062 55.457031 -14.097656 53.1875 -10.296875 C 50.925781 -6.492188 47.828125 -3.59375 43.890625 -1.59375 C 39.960938 0.40625 35.53125 1.40625 30.59375 1.40625 Z M 30.59375 -9.796875 C 34.46875 -9.796875 37.671875 -11.046875 40.203125 -13.546875 C 42.734375 -16.046875 44 -19.628906 44 -24.296875 L 44 -25.296875 C 44 -29.960938 42.75 -33.546875 40.25 -36.046875 C 37.75 -38.546875 34.53125 -39.796875 30.59375 -39.796875 C 26.726562 -39.796875 23.53125 -38.546875 21 -36.046875 C 18.46875 -33.546875 17.203125 -29.960938 17.203125 -25.296875 L 17.203125 -24.296875 C 17.203125 -19.628906 18.46875 -16.046875 21 -13.546875 C 23.53125 -11.046875 26.726562 -9.796875 30.59375 -9.796875 Z M 30.59375 -9.796875 "/> </g> <g id="wmg-0-5"> <path d="M 14.59375 -55.203125 L 4 -70 L 18.203125 -70 L 25.59375 -55.203125 Z M 14.59375 -55.203125 "/> </g> <g id="wmg-0-6"> <path d="M 12.09375 21.40625 C 9.832031 21.40625 7.914062 20.671875 6.34375 19.203125 C 4.78125 17.734375 4 15.800781 4 13.40625 C 4 11 4.78125 9.0625 6.34375 7.59375 C 7.914062 6.132812 9.832031 5.40625 12.09375 5.40625 C 14.425781 5.40625 16.359375 6.132812 17.890625 7.59375 C 19.429688 9.0625 20.203125 11 20.203125 13.40625 C 20.203125 15.800781 19.429688 17.734375 17.890625 19.203125 C 16.359375 20.671875 14.425781 21.40625 12.09375 21.40625 Z M 12.09375 21.40625 "/> </g> <g id="wmg-0-7"> <path d="M 4 -55.203125 L 11.40625 -70 L 25.59375 -70 L 15 -55.203125 Z M 4 -55.203125 "/> </g> </g> </defs> <g style="fill:var(--wm-base)"> <use xlink:href="#wmg-0-0" x="4" y="99.4"/> <use xlink:href="#wmg-0-1" x="71.6" y="99.4"/> <use xlink:href="#wmg-0-2" x="98.2" y="99.4"/> <use xlink:href="#wmg-0-3" x="159.8" y="99.4"/> <use xlink:href="#wmg-0-4" x="212.2" y="99.4"/> </g> <g style="fill:var(--wm-mark)"> <use xlink:href="#wmg-0-5" x="114" y="99.4"/> <use xlink:href="#wmg-0-6" x="174" y="99.4"/> <use xlink:href="#wmg-0-6" x="230.7" y="99.4"/> <use xlink:href="#wmg-0-7" x="228" y="99.4"/> </g> </svg> </span></a>
+    <nav class="site-nav" aria-label="Sections">
+      <a href="#how">How it works</a><a href="#fit">Integration</a><a href="#team">Team</a>
+    </nav>
+    <a class="btn btn-primary" href="#demo">Open the live demo</a>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <div class="meaning"><span class="wmbox"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="wm" role="img" aria-label="Olùṣọ́" viewBox="0 0 277.4 142"> <defs> <g> <g id="wmg-0-0"> <path d="M 33.796875 1.40625 C 24.992188 1.40625 17.992188 -1.007812 12.796875 -5.84375 C 7.597656 -10.675781 5 -17.59375 5 -26.59375 L 5 -43.40625 C 5 -52.40625 7.597656 -59.320312 12.796875 -64.15625 C 17.992188 -68.988281 24.992188 -71.40625 33.796875 -71.40625 C 42.597656 -71.40625 49.597656 -68.988281 54.796875 -64.15625 C 59.992188 -59.320312 62.59375 -52.40625 62.59375 -43.40625 L 62.59375 -26.59375 C 62.59375 -17.59375 59.992188 -10.675781 54.796875 -5.84375 C 49.597656 -1.007812 42.597656 1.40625 33.796875 1.40625 Z M 33.796875 -10.40625 C 38.734375 -10.40625 42.566406 -11.835938 45.296875 -14.703125 C 48.035156 -17.566406 49.40625 -21.398438 49.40625 -26.203125 L 49.40625 -43.796875 C 49.40625 -48.597656 48.035156 -52.429688 45.296875 -55.296875 C 42.566406 -58.160156 38.734375 -59.59375 33.796875 -59.59375 C 28.929688 -59.59375 25.113281 -58.160156 22.34375 -55.296875 C 19.582031 -52.429688 18.203125 -48.597656 18.203125 -43.796875 L 18.203125 -26.203125 C 18.203125 -21.398438 19.582031 -17.566406 22.34375 -14.703125 C 25.113281 -11.835938 28.929688 -10.40625 33.796875 -10.40625 Z M 33.796875 -10.40625 "/> </g> <g id="wmg-0-1"> <path d="M 7 0 L 7 -70 L 19.59375 -70 L 19.59375 0 Z M 7 0 "/> </g> <g id="wmg-0-2"> <path d="M 25.90625 0.796875 C 22.03125 0.796875 18.644531 -0.0820312 15.75 -1.84375 C 12.851562 -3.613281 10.601562 -6.066406 9 -9.203125 C 7.394531 -12.335938 6.59375 -15.9375 6.59375 -20 L 6.59375 -49.59375 L 19.203125 -49.59375 L 19.203125 -21 C 19.203125 -17.269531 20.117188 -14.46875 21.953125 -12.59375 C 23.785156 -10.726562 26.398438 -9.796875 29.796875 -9.796875 C 33.660156 -9.796875 36.660156 -11.078125 38.796875 -13.640625 C 40.929688 -16.210938 42 -19.800781 42 -24.40625 L 42 -49.59375 L 54.59375 -49.59375 L 54.59375 0 L 42.203125 0 L 42.203125 -6.5 L 40.40625 -6.5 C 39.601562 -4.832031 38.097656 -3.195312 35.890625 -1.59375 C 33.691406 0 30.363281 0.796875 25.90625 0.796875 Z M 25.90625 0.796875 "/> </g> <g id="wmg-0-3"> <path d="M 27.59375 1.40625 C 21.132812 1.40625 15.835938 0.00390625 11.703125 -2.796875 C 7.566406 -5.597656 5.066406 -9.597656 4.203125 -14.796875 L 15.796875 -17.796875 C 16.460938 -14.328125 17.878906 -11.925781 20.046875 -10.59375 C 22.210938 -9.257812 24.726562 -8.59375 27.59375 -8.59375 C 30.53125 -8.59375 32.695312 -9.109375 34.09375 -10.140625 C 35.5 -11.179688 36.203125 -12.46875 36.203125 -14 C 36.203125 -15.53125 35.535156 -16.710938 34.203125 -17.546875 C 32.867188 -18.378906 30.734375 -19.0625 27.796875 -19.59375 L 25 -20.09375 C 21.53125 -20.757812 18.363281 -21.675781 15.5 -22.84375 C 12.632812 -24.007812 10.332031 -25.625 8.59375 -27.6875 C 6.863281 -29.757812 6 -32.429688 6 -35.703125 C 6 -40.628906 7.796875 -44.410156 11.390625 -47.046875 C 14.992188 -49.679688 19.726562 -51 25.59375 -51 C 31.132812 -51 35.738281 -49.765625 39.40625 -47.296875 C 43.070312 -44.828125 45.46875 -41.59375 46.59375 -37.59375 L 34.90625 -34 C 34.363281 -36.53125 33.273438 -38.328125 31.640625 -39.390625 C 30.015625 -40.460938 28 -41 25.59375 -41 C 23.195312 -41 21.363281 -40.582031 20.09375 -39.75 C 18.832031 -38.914062 18.203125 -37.765625 18.203125 -36.296875 C 18.203125 -34.703125 18.867188 -33.519531 20.203125 -32.75 C 21.535156 -31.976562 23.332031 -31.394531 25.59375 -31 L 28.40625 -30.5 C 32.132812 -29.832031 35.515625 -28.945312 38.546875 -27.84375 C 41.578125 -26.75 43.976562 -25.179688 45.75 -23.140625 C 47.519531 -21.109375 48.40625 -18.363281 48.40625 -14.90625 C 48.40625 -9.695312 46.519531 -5.675781 42.75 -2.84375 C 38.976562 -0.0078125 33.925781 1.40625 27.59375 1.40625 Z M 27.59375 1.40625 "/> </g> <g id="wmg-0-4"> <path d="M 30.59375 1.40625 C 25.664062 1.40625 21.234375 0.40625 17.296875 -1.59375 C 13.367188 -3.59375 10.269531 -6.492188 8 -10.296875 C 5.726562 -14.097656 4.59375 -18.664062 4.59375 -24 L 4.59375 -25.59375 C 4.59375 -30.925781 5.726562 -35.492188 8 -39.296875 C 10.269531 -43.097656 13.367188 -46 17.296875 -48 C 21.234375 -50 25.664062 -51 30.59375 -51 C 35.53125 -51 39.960938 -50 43.890625 -48 C 47.828125 -46 50.925781 -43.097656 53.1875 -39.296875 C 55.457031 -35.492188 56.59375 -30.925781 56.59375 -25.59375 L 56.59375 -24 C 56.59375 -18.664062 55.457031 -14.097656 53.1875 -10.296875 C 50.925781 -6.492188 47.828125 -3.59375 43.890625 -1.59375 C 39.960938 0.40625 35.53125 1.40625 30.59375 1.40625 Z M 30.59375 -9.796875 C 34.46875 -9.796875 37.671875 -11.046875 40.203125 -13.546875 C 42.734375 -16.046875 44 -19.628906 44 -24.296875 L 44 -25.296875 C 44 -29.960938 42.75 -33.546875 40.25 -36.046875 C 37.75 -38.546875 34.53125 -39.796875 30.59375 -39.796875 C 26.726562 -39.796875 23.53125 -38.546875 21 -36.046875 C 18.46875 -33.546875 17.203125 -29.960938 17.203125 -25.296875 L 17.203125 -24.296875 C 17.203125 -19.628906 18.46875 -16.046875 21 -13.546875 C 23.53125 -11.046875 26.726562 -9.796875 30.59375 -9.796875 Z M 30.59375 -9.796875 "/> </g> <g id="wmg-0-5"> <path d="M 14.59375 -55.203125 L 4 -70 L 18.203125 -70 L 25.59375 -55.203125 Z M 14.59375 -55.203125 "/> </g> <g id="wmg-0-6"> <path d="M 12.09375 21.40625 C 9.832031 21.40625 7.914062 20.671875 6.34375 19.203125 C 4.78125 17.734375 4 15.800781 4 13.40625 C 4 11 4.78125 9.0625 6.34375 7.59375 C 7.914062 6.132812 9.832031 5.40625 12.09375 5.40625 C 14.425781 5.40625 16.359375 6.132812 17.890625 7.59375 C 19.429688 9.0625 20.203125 11 20.203125 13.40625 C 20.203125 15.800781 19.429688 17.734375 17.890625 19.203125 C 16.359375 20.671875 14.425781 21.40625 12.09375 21.40625 Z M 12.09375 21.40625 "/> </g> <g id="wmg-0-7"> <path d="M 4 -55.203125 L 11.40625 -70 L 25.59375 -70 L 15 -55.203125 Z M 4 -55.203125 "/> </g> </g> </defs> <g style="fill:var(--wm-base)"> <use xlink:href="#wmg-0-0" x="4" y="99.4"/> <use xlink:href="#wmg-0-1" x="71.6" y="99.4"/> <use xlink:href="#wmg-0-2" x="98.2" y="99.4"/> <use xlink:href="#wmg-0-3" x="159.8" y="99.4"/> <use xlink:href="#wmg-0-4" x="212.2" y="99.4"/> </g> <g style="fill:var(--wm-mark)"> <use xlink:href="#wmg-0-5" x="114" y="99.4"/> <use xlink:href="#wmg-0-6" x="174" y="99.4"/> <use xlink:href="#wmg-0-6" x="230.7" y="99.4"/> <use xlink:href="#wmg-0-7" x="228" y="99.4"/> </g> </svg> </span></div>
+      <h1>Catch the mule ring before the cash-out.</h1>
+      <p class="lede">Oluso reads every transfer as a live graph of accounts. It spots a mule ring while the money is still moving, drafts the case with an AI investigator, and leaves the decision to a named officer.</p>
+      <div class="ctas"><a class="btn btn-primary" href="#demo">Open the live demo</a><a class="btn btn-ghost" href="#how">How it works</a></div>
+    </div>
+    <figure class="hero-live" style="margin:0">
+      <div class="bar"><span><span class="live-dot"></span><strong>Live transaction graph</strong></span><span>Synthetic data</span></div>
+      <canvas id="hero-canvas" aria-label="Animated preview: transfers flow between accounts until a mule ring forms and is flagged in red"></canvas>
+      <figcaption class="status" id="hero-status">Watching 50,000 accounts. Every transfer is being scored.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="block story" aria-labelledby="story-h">
+  <div class="wrap">
+    <p class="amount" id="story-h">₦850,000</p>
+    <p class="gone">gone before breakfast.</p>
+    <ol class="timeline">
+      <li style="--c:#EEF2F4"><span class="when">7:42 PM</span><p>A cloned voice of her son asks for hospital money. Mrs A sends it.</p></li>
+      <li style="--c:#F2A93B"><span class="when">7:42 PM</span><p>It lands in an account opened six days ago and splits five ways in seconds.</p></li>
+      <li style="--c:#FF8A5B"><span class="when">7:43 PM</span><p>Mules pass it on. One cashes out ₦170,000 at a POS agent.</p></li>
+      <li style="--c:#F2545B"><span class="when">Next morning</span><p>She calls the bank. The money is gone, and no single transfer broke a rule.</p></li>
+    </ol>
+    <p class="note">An illustrative case. Every account and amount on this page is synthetic.</p>
+  </div>
+</section>
+
+<section class="block" id="how" aria-labelledby="how-h">
+  <div class="wrap">
+    <h2 id="how-h">Detect. Investigate. Act.</h2>
+    <p class="intro">Rules that score one account at a time miss mule rings, because each account looks normal on its own. Oluso looks at the shape of the flow instead.</p>
+    <div class="steps">
+      <div class="step"><div class="num">1</div><h3>Detect</h3><p>Every transfer updates a live graph of accounts. Each event is scored, and suspicious accounts are grouped into a ring.</p></div>
+      <div class="step"><div class="num">2</div><h3>Investigate</h3><p>An AI agent with read-only tools drafts the case in plain language, links every claim to a transaction, and proposes one action.</p></div>
+      <div class="step"><div class="num">3</div><h3>Act</h3><p>A named officer approves or rejects. Policy enforces hard limits, and every step goes on a tamper-evident log.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="block" style="padding-top:0" aria-labelledby="diff-h">
+  <div class="wrap">
+    <h2 id="diff-h">What makes Oluso different</h2>
+    <p class="intro">Most fraud tools add another classifier and another dashboard. Oluso adds two things banks have not had.</p>
+    <div class="diff">
+      <div style="--c:#F2545B"><h3>The ring, not the account</h3><p>Temporal graph scoring and community detection find networks that per-account rules miss.</p></div>
+      <div style="--c:#F2A93B"><h3>Cases that cite their evidence</h3><p>Every sentence the agent writes links to a transaction an analyst can check in seconds.</p></div>
+      <div style="--c:#16A386"><h3>An agent that cannot act alone</h3><p>Deny-by-default tools, limits enforced in code, and a human approval for every action.</p></div>
+      <div style="--c:#5E8DB8"><h3>Tested against decoys</h3><p>Planted rings hide among look-alike merchants, payroll runs and collections, so precision is measured, not assumed.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="fit" style="padding-top:0" aria-labelledby="fit-h">
+  <div class="wrap">
+    <h2 id="fit-h">One feed in. Two actions out.</h2>
+    <p class="intro">Nothing else touches core banking. Data stays inside the bank, accounts carry pseudonymous IDs, and no names reach the model.</p>
+    <div class="pipe" role="list">
+      <div class="node" role="listitem"><b>Event feed</b><span>Transfers, card, USSD, ATM and POS events</span></div><div class="arrow" aria-hidden="true">&#8594;</div>
+      <div class="node" role="listitem"><b>Live graph</b><span>Scores every event, groups rings</span></div><div class="arrow" aria-hidden="true">&#8594;</div>
+      <div class="node" role="listitem"><b>AI agent</b><span>Drafts the case, cites evidence</span></div><div class="arrow" aria-hidden="true">&#8594;</div>
+      <div class="node" role="listitem"><b>Guardrails</b><span>Limits, scope, no repeats</span></div><div class="arrow" aria-hidden="true">&#8594;</div>
+      <div class="node human" role="listitem"><b>Officer</b><span>Approves or rejects</span></div><div class="arrow" aria-hidden="true">&#8594;</div>
+      <div class="node" role="listitem"><b>Bank action</b><span>24 h hold or step-up check</span></div>
+    </div>
+    <div class="audit-band">A tamper-evident log of every step, ready for the regulator.</div>
+  </div>
+</section>
+
+<section class="block targets" aria-labelledby="tg-h">
+  <div class="wrap">
+    <h2 id="tg-h">Numbers we will prove on stage</h2>
+    <p class="intro">Build targets, tested on labelled synthetic data. Not results yet.</p>
+    <div class="stats">
+      <div><b>≥0.80</b><span>of planted rings found before cash-out</span></div>
+      <div><b>≥0.90</b><span>of flagged rings are real rings</span></div>
+      <div><b>&lt;5 s</b><span>from a complete pattern to an alert</span></div>
+      <div><b>0</b><span>actions on an account without approval</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="team" aria-labelledby="team-h">
+  <div class="wrap">
+    <h2 id="team-h">The people building Oluso</h2>
+    <div class="team">
+      <article class="person"><div class="top"><div class="avatar" style="background:linear-gradient(135deg,#FF8A5B,#F2545B 55%,#D93A63)">BA</div><div><h3>Babatunde Abdulkareem</h3><p class="role">Team lead: ML, agent and the pitch</p></div></div>
+        <ul><li>Full stack and ML engineer, MSc in AI and Data Science</li><li>Built the SabiPay merchant payments platform, now in PCI DSS assessment</li><li>1st place globally, SpoonOS DevCall Season 1, for an agentic trading bot</li><li>Built Decide AI, ranked 4th globally on SpreadsheetBench Verified</li></ul></article>
+      <article class="person"><div class="top"><div class="avatar" style="background:linear-gradient(135deg,#5EEAC4,#16A386)">OA</div><div><h3>Olaitan Adeniyi</h3><p class="role">Product, demo and infrastructure</p></div></div>
+        <ul><li>Full stack and DevOps engineer</li><li>Lead Engineer at Peepalytics, US</li><li>Senior Engineer at Tech Savvy, Saint Kitts</li><li>Owns the console, the stage demo and deployment</li></ul></article>
+    </div>
+  </div>
+</section>
+
+<section class="block closing" aria-labelledby="cl-h">
+  <div class="wrap">
+    <h2 id="cl-h">Watch Oluso catch a ring.</h2>
+    <p>The live demo plays the Mrs A case in real time on synthetic data. You make the officer's call.</p>
+    <a class="btn btn-primary" href="#demo">Open the live demo</a>
+  </div>
+</section>
+</main>
+<footer class="site-foot"><div class="wrap">Oluso, Zenith Bank Zecathon 6.0, Track 5: Combating Digital Fraud and Financial Crime. Every account and amount shown is synthetic.</div></footer>
+</div>
+
+<div id="demo-root">
+<div class="console" id="console">
+  <div class="c-top">
+    <a class="brand" href="#top" aria-label="Back to the Olùṣọ́ site"><span class="mk" data-mark></span><span class="wmbox"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="wm" role="img" aria-label="Olùṣọ́" viewBox="0 0 277.4 142"> <defs> <g> <g id="wmg-0-0"> <path d="M 33.796875 1.40625 C 24.992188 1.40625 17.992188 -1.007812 12.796875 -5.84375 C 7.597656 -10.675781 5 -17.59375 5 -26.59375 L 5 -43.40625 C 5 -52.40625 7.597656 -59.320312 12.796875 -64.15625 C 17.992188 -68.988281 24.992188 -71.40625 33.796875 -71.40625 C 42.597656 -71.40625 49.597656 -68.988281 54.796875 -64.15625 C 59.992188 -59.320312 62.59375 -52.40625 62.59375 -43.40625 L 62.59375 -26.59375 C 62.59375 -17.59375 59.992188 -10.675781 54.796875 -5.84375 C 49.597656 -1.007812 42.597656 1.40625 33.796875 1.40625 Z M 33.796875 -10.40625 C 38.734375 -10.40625 42.566406 -11.835938 45.296875 -14.703125 C 48.035156 -17.566406 49.40625 -21.398438 49.40625 -26.203125 L 49.40625 -43.796875 C 49.40625 -48.597656 48.035156 -52.429688 45.296875 -55.296875 C 42.566406 -58.160156 38.734375 -59.59375 33.796875 -59.59375 C 28.929688 -59.59375 25.113281 -58.160156 22.34375 -55.296875 C 19.582031 -52.429688 18.203125 -48.597656 18.203125 -43.796875 L 18.203125 -26.203125 C 18.203125 -21.398438 19.582031 -17.566406 22.34375 -14.703125 C 25.113281 -11.835938 28.929688 -10.40625 33.796875 -10.40625 Z M 33.796875 -10.40625 "/> </g> <g id="wmg-0-1"> <path d="M 7 0 L 7 -70 L 19.59375 -70 L 19.59375 0 Z M 7 0 "/> </g> <g id="wmg-0-2"> <path d="M 25.90625 0.796875 C 22.03125 0.796875 18.644531 -0.0820312 15.75 -1.84375 C 12.851562 -3.613281 10.601562 -6.066406 9 -9.203125 C 7.394531 -12.335938 6.59375 -15.9375 6.59375 -20 L 6.59375 -49.59375 L 19.203125 -49.59375 L 19.203125 -21 C 19.203125 -17.269531 20.117188 -14.46875 21.953125 -12.59375 C 23.785156 -10.726562 26.398438 -9.796875 29.796875 -9.796875 C 33.660156 -9.796875 36.660156 -11.078125 38.796875 -13.640625 C 40.929688 -16.210938 42 -19.800781 42 -24.40625 L 42 -49.59375 L 54.59375 -49.59375 L 54.59375 0 L 42.203125 0 L 42.203125 -6.5 L 40.40625 -6.5 C 39.601562 -4.832031 38.097656 -3.195312 35.890625 -1.59375 C 33.691406 0 30.363281 0.796875 25.90625 0.796875 Z M 25.90625 0.796875 "/> </g> <g id="wmg-0-3"> <path d="M 27.59375 1.40625 C 21.132812 1.40625 15.835938 0.00390625 11.703125 -2.796875 C 7.566406 -5.597656 5.066406 -9.597656 4.203125 -14.796875 L 15.796875 -17.796875 C 16.460938 -14.328125 17.878906 -11.925781 20.046875 -10.59375 C 22.210938 -9.257812 24.726562 -8.59375 27.59375 -8.59375 C 30.53125 -8.59375 32.695312 -9.109375 34.09375 -10.140625 C 35.5 -11.179688 36.203125 -12.46875 36.203125 -14 C 36.203125 -15.53125 35.535156 -16.710938 34.203125 -17.546875 C 32.867188 -18.378906 30.734375 -19.0625 27.796875 -19.59375 L 25 -20.09375 C 21.53125 -20.757812 18.363281 -21.675781 15.5 -22.84375 C 12.632812 -24.007812 10.332031 -25.625 8.59375 -27.6875 C 6.863281 -29.757812 6 -32.429688 6 -35.703125 C 6 -40.628906 7.796875 -44.410156 11.390625 -47.046875 C 14.992188 -49.679688 19.726562 -51 25.59375 -51 C 31.132812 -51 35.738281 -49.765625 39.40625 -47.296875 C 43.070312 -44.828125 45.46875 -41.59375 46.59375 -37.59375 L 34.90625 -34 C 34.363281 -36.53125 33.273438 -38.328125 31.640625 -39.390625 C 30.015625 -40.460938 28 -41 25.59375 -41 C 23.195312 -41 21.363281 -40.582031 20.09375 -39.75 C 18.832031 -38.914062 18.203125 -37.765625 18.203125 -36.296875 C 18.203125 -34.703125 18.867188 -33.519531 20.203125 -32.75 C 21.535156 -31.976562 23.332031 -31.394531 25.59375 -31 L 28.40625 -30.5 C 32.132812 -29.832031 35.515625 -28.945312 38.546875 -27.84375 C 41.578125 -26.75 43.976562 -25.179688 45.75 -23.140625 C 47.519531 -21.109375 48.40625 -18.363281 48.40625 -14.90625 C 48.40625 -9.695312 46.519531 -5.675781 42.75 -2.84375 C 38.976562 -0.0078125 33.925781 1.40625 27.59375 1.40625 Z M 27.59375 1.40625 "/> </g> <g id="wmg-0-4"> <path d="M 30.59375 1.40625 C 25.664062 1.40625 21.234375 0.40625 17.296875 -1.59375 C 13.367188 -3.59375 10.269531 -6.492188 8 -10.296875 C 5.726562 -14.097656 4.59375 -18.664062 4.59375 -24 L 4.59375 -25.59375 C 4.59375 -30.925781 5.726562 -35.492188 8 -39.296875 C 10.269531 -43.097656 13.367188 -46 17.296875 -48 C 21.234375 -50 25.664062 -51 30.59375 -51 C 35.53125 -51 39.960938 -50 43.890625 -48 C 47.828125 -46 50.925781 -43.097656 53.1875 -39.296875 C 55.457031 -35.492188 56.59375 -30.925781 56.59375 -25.59375 L 56.59375 -24 C 56.59375 -18.664062 55.457031 -14.097656 53.1875 -10.296875 C 50.925781 -6.492188 47.828125 -3.59375 43.890625 -1.59375 C 39.960938 0.40625 35.53125 1.40625 30.59375 1.40625 Z M 30.59375 -9.796875 C 34.46875 -9.796875 37.671875 -11.046875 40.203125 -13.546875 C 42.734375 -16.046875 44 -19.628906 44 -24.296875 L 44 -25.296875 C 44 -29.960938 42.75 -33.546875 40.25 -36.046875 C 37.75 -38.546875 34.53125 -39.796875 30.59375 -39.796875 C 26.726562 -39.796875 23.53125 -38.546875 21 -36.046875 C 18.46875 -33.546875 17.203125 -29.960938 17.203125 -25.296875 L 17.203125 -24.296875 C 17.203125 -19.628906 18.46875 -16.046875 21 -13.546875 C 23.53125 -11.046875 26.726562 -9.796875 30.59375 -9.796875 Z M 30.59375 -9.796875 "/> </g> <g id="wmg-0-5"> <path d="M 14.59375 -55.203125 L 4 -70 L 18.203125 -70 L 25.59375 -55.203125 Z M 14.59375 -55.203125 "/> </g> <g id="wmg-0-6"> <path d="M 12.09375 21.40625 C 9.832031 21.40625 7.914062 20.671875 6.34375 19.203125 C 4.78125 17.734375 4 15.800781 4 13.40625 C 4 11 4.78125 9.0625 6.34375 7.59375 C 7.914062 6.132812 9.832031 5.40625 12.09375 5.40625 C 14.425781 5.40625 16.359375 6.132812 17.890625 7.59375 C 19.429688 9.0625 20.203125 11 20.203125 13.40625 C 20.203125 15.800781 19.429688 17.734375 17.890625 19.203125 C 16.359375 20.671875 14.425781 21.40625 12.09375 21.40625 Z M 12.09375 21.40625 "/> </g> <g id="wmg-0-7"> <path d="M 4 -55.203125 L 11.40625 -70 L 25.59375 -70 L 15 -55.203125 Z M 4 -55.203125 "/> </g> </g> </defs> <g style="fill:var(--wm-base)"> <use xlink:href="#wmg-0-0" x="4" y="99.4"/> <use xlink:href="#wmg-0-1" x="71.6" y="99.4"/> <use xlink:href="#wmg-0-2" x="98.2" y="99.4"/> <use xlink:href="#wmg-0-3" x="159.8" y="99.4"/> <use xlink:href="#wmg-0-4" x="212.2" y="99.4"/> </g> <g style="fill:var(--wm-mark)"> <use xlink:href="#wmg-0-5" x="114" y="99.4"/> <use xlink:href="#wmg-0-6" x="174" y="99.4"/> <use xlink:href="#wmg-0-6" x="230.7" y="99.4"/> <use xlink:href="#wmg-0-7" x="228" y="99.4"/> </g> </svg> </span></a>
+    <div class="c-tabs" role="tablist" aria-label="Console views">
+      <button role="tab" data-view="monitor" aria-selected="true">Live monitor</button>
+      <button role="tab" data-view="cases" aria-selected="false">Cases</button>
+      <button role="tab" data-view="audit" aria-selected="false">Audit log</button>
+    </div>
+    <div class="c-stats" aria-live="off">
+      <span class="opt">Events per second<b id="s-eps">200</b></span>
+      <span class="opt">Accounts watched<b>50,000</b></span>
+      <span>Open cases<b id="s-open">0</b></span>
+      <span class="clock" id="s-clock">19:41:30</span>
+    </div>
+    <a class="c-exit" href="#top">Back to site</a>
+  </div>
+
+  <div class="c-main" id="c-main">
+    <!-- monitor -->
+    <div class="panel" id="v-graph">
+      <div class="panel-head"><h2>Live transaction graph</h2>
+        <div class="legend"><span><i style="background:#5E8DB8"></i>normal</span><span><i style="background:#F2A93B"></i>watch</span><span><i style="background:#E8484E"></i>ring</span><span class="pill muted">Synthetic data</span></div>
+      </div>
+      <div class="graph-wrap">
+        <canvas id="c-canvas" aria-label="Live transaction graph"></canvas>
+        <div class="banner" id="b-alert" role="status"><b id="b-alert-h">Mule ring detected</b><span id="b-alert-t"></span></div>
+        <div class="held-card" id="held-card"><b>₦665,000</b><span>still in the bank when Mrs A calls</span><small>out of ₦850,000 sent</small></div>
+      </div>
+    </div>
+    <div class="panel" id="v-queue">
+      <div class="panel-head"><h2>Case queue</h2></div>
+      <div class="queue" id="queue"></div>
+    </div>
+    <!-- case / lists are injected here -->
+  </div>
+
+  <div class="c-foot">
+    <div class="narr" id="narr" aria-live="polite"></div>
+    <div class="ctrls">
+      <span class="scn">Scenario: mule ring</span>
+      <button id="k-play" class="primary">Pause</button>
+      <button id="k-restart">Restart</button>
+      <button id="k-speed" aria-label="Playback speed">1x</button>
+      <label><input type="checkbox" id="k-narr" checked> Narration</label>
+      <label><input type="checkbox" id="k-auto" checked> Auto-approve</label>
+    </div>
+  </div>
+</div>
+</div>
+
+<script>
+(()=>{
+'use strict';
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ---------------- logo mark ---------------- */
+let gid=0;
+function markSVG(){
+  const id=++gid, n=6, R=36, nr=7.6, gap=(nr+2.6)/R;
+  const ang=[...Array(n)].map((_,i)=>-Math.PI/2+i*2*Math.PI/n);
+  const pts=ang.map(a=>[R*Math.cos(a),R*Math.sin(a)]);
+  let arcs='';
+  for(let i=0;i<n;i++){const a0=ang[i]+gap,a1=ang[(i+1)%n]-gap+(i===n-1?2*Math.PI:0);
+    arcs+=`<path d="M${(R*Math.cos(a0)).toFixed(2)} ${(R*Math.sin(a0)).toFixed(2)} A${R} ${R} 0 0 1 ${(R*Math.cos(a1)).toFixed(2)} ${(R*Math.sin(a1)).toFixed(2)}"/>`;}
+  const nodes=pts.map((p,i)=>`<circle cx="${p[0].toFixed(2)}" cy="${p[1].toFixed(2)}" r="${nr}" fill="url(#${i===2?'mt':'mr'}${id})"/>`).join('');
+  return `<svg viewBox="-50 -50 100 100" aria-hidden="true" width="100%" height="100%"><defs>
+<linearGradient id="mr${id}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF8A5B"/><stop offset=".55" stop-color="#F2545B"/><stop offset="1" stop-color="#D93A63"/></linearGradient>
+<linearGradient id="mrs${id}" gradientUnits="userSpaceOnUse" x1="-36" y1="-36" x2="36" y2="36"><stop offset="0" stop-color="#FF8A5B"/><stop offset=".55" stop-color="#F2545B"/><stop offset="1" stop-color="#D93A63"/></linearGradient>
+<linearGradient id="mt${id}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5EEAC4"/><stop offset="1" stop-color="#16A386"/></linearGradient></defs>
+<g fill="none" stroke="url(#mrs${id})" stroke-width="5.5" stroke-linecap="round">${arcs}</g>${nodes}
+<circle r="17.5" fill="url(#mt${id})"/><circle r="7.7" fill="#13212D"/><circle cx="-2.9" cy="-3.2" r="2.3" fill="#fff"/></svg>`;
+}
+document.querySelectorAll('[data-mark]').forEach(el=>el.innerHTML=markSVG());
+
+/* ---------------- world ---------------- */
+function rng(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+const W0=836,H0=488;
+const RING={V:[166,218],C:[386,228],M1:[451,115],M2:[499,163],M3:[516,228],M4:[499,293],M5:[451,341],L1:[626,103],L2:[658,178],L3:[644,256],X:[746,78],P:[588,358]};
+const ACCTS=['C','M1','M2','M3','M4','M5','L1','L2','L3'];
+const HELD=['M5','L1','L2','L3'];
+const ZC=[536,208], ZMAX=1.22, DETECT=9.6;
+const REDGES=[['V','C',0.4,1.5],['C','M1',2.2,1],['C','M2',2.42,1],['C','M3',2.64,1],['C','M4',2.86,1],['C','M5',3.08,1],['M1','L1',5.0,1],['M2','L2',5.4,1],['M3','L3',5.8,1],['M4','P',7.0,1]];
+const COL={steel:'#5E8DB8',amber:'#F2A93B',red:'#E8484E',teal:'#2FC4A0',text:'#EAF0F4',muted:'#93A7B8',dim:'#5F768A',line:'#2C4458',panel2:'#22374A',ink:'#0E1922'};
+function hex(h){return[parseInt(h.slice(1,3),16),parseInt(h.slice(3,5),16),parseInt(h.slice(5,7),16)]}
+function mix(a,b,k){k=Math.max(0,Math.min(1,k));const A=hex(a),B=hex(b);return `rgb(${A.map((v,i)=>Math.round(v+(B[i]-v)*k)).join(',')})`}
+const prog=(t,a,b)=>Math.max(0,Math.min(1,(t-a)/(b-a)));
+const ease=k=>{k=Math.max(0,Math.min(1,k));return k*k*(3-2*k)};
+
+function buildWorld(){
+  const r=rng(11), nodes=[], X0=-430,X1=W0+430,Y0=-170,Y1=H0+170;
+  const ringPts=Object.values(RING);
+  let tries=0;
+  while(nodes.length<600&&tries<90000){tries++;
+    const x=X0+r()*(X1-X0), y=Y0+r()*(Y1-Y0);
+    let ok=true;
+    for(const p of nodes){if((p[0]-x)**2+(p[1]-y)**2<900){ok=false;break}}
+    if(!ok)continue;
+    for(const p of ringPts){if((p[0]-x)**2+(p[1]-y)**2<48*48){ok=false;break}}
+    if(!ok)continue;
+    if(x>356&&x<776&&y>58&&y<388&&r()<0.8)continue;
+    nodes.push([x,y]);
+  }
+  const edges=new Set();
+  nodes.forEach((p,i)=>{
+    let best=[[1e12,-1],[1e12,-1]];
+    nodes.forEach((q,j)=>{if(i===j)return;const d=(p[0]-q[0])**2+(p[1]-q[1])**2;
+      if(d<best[0][0]){best[1]=best[0];best[0]=[d,j]}else if(d<best[1][0]){best[1]=[d,j]}});
+    best.forEach(([d,j])=>{if(j>=0)edges.add(i<j?i+','+j:j+','+i)});
+  });
+  const E=[...edges].map(s=>s.split(',').map(Number));
+  const squares=new Set(); for(let k=0;k<26;k++)squares.add(Math.floor(r()*nodes.length));
+  const flows=[]; for(let k=0;k<280;k++){flows.push([E[Math.floor(r()*E.length)],2.2+r()*3.8,r()*6,r()<0.5])}
+  return {nodes,edges:E,squares,flows};
+}
+const WORLD=buildWorld();
+
+function recvTime(n){for(const [a,b,t0,d] of REDGES){if(b===n)return t0+d}return null}
+function nodeCol(n,rt){
+  if(n==='V'||rt==null)return COL.steel;
+  if(rt>=DETECT)return mix(COL.amber,COL.red,prog(rt,DETECT,DETECT+0.5));
+  let tr=n==='C'?1.9:recvTime(n);
+  if(tr==null)return COL.steel;
+  return mix(COL.steel,COL.amber,prog(rt,tr,tr+0.6));
+}
+function hull(pts){
+  pts=[...pts].sort((a,b)=>a[0]-b[0]||a[1]-b[1]);
+  const cr=(o,a,b)=>(a[0]-o[0])*(b[1]-o[1])-(a[1]-o[1])*(b[0]-o[0]);
+  const lo=[],up=[];
+  for(const p of pts){while(lo.length>=2&&cr(lo[lo.length-2],lo[lo.length-1],p)<=0)lo.pop();lo.push(p)}
+  for(const p of [...pts].reverse()){while(up.length>=2&&cr(up[up.length-2],up[up.length-1],p)<=0)up.pop();up.push(p)}
+  return lo.slice(0,-1).concat(up.slice(0,-1));
+}
+
+/* ---------------- graph view (canvas) ---------------- */
+class GraphView{
+  constructor(canvas,opts={}){
+    this.c=canvas;this.ctx=canvas.getContext('2d');this.layer=document.createElement('canvas');this.lctx=this.layer.getContext('2d');
+    this.opts=Object.assign({labels:true,scale:0.97},opts);this.resize();
+    new ResizeObserver(()=>this.resize()).observe(canvas);
+  }
+  resize(){
+    const dpr=Math.min(window.devicePixelRatio||1,2), w=this.c.clientWidth||1, h=this.c.clientHeight||1;
+    this.dpr=dpr;this.w=w;this.h=h;
+    for(const cv of [this.c,this.layer]){cv.width=Math.round(w*dpr);cv.height=Math.round(h*dpr)}
+    if(w<640){this.s=Math.min(w/640,h/400)*this.opts.scale;this.wc=[470,205]}else{this.s=Math.min(w/W0,h/H0)*this.opts.scale;this.wc=[W0/2,H0/2]}this.cx=w/2;this.cy=h/2;
+  }
+  P(p,z){const zx=ZC[0]+(p[0]-ZC[0])*z, zy=ZC[1]+(p[1]-ZC[1])*z+30*(z-1)/(ZMAX-1);
+    return [this.cx+(zx-this.wc[0])*this.s, this.cy+(zy-this.wc[1])*this.s];}
+  text(s,x,y,size,col,weight=400,align='left',a=1){const g=this.ctx;g.globalAlpha=a;g.font=`${weight} ${size}px "IBM Plex Sans", Arial, sans-serif`;g.textAlign=align;g.fillStyle=col;g.fillText(s,x,y);g.globalAlpha=1}
+  pill(s,x,y,size,col,a=1){const g=this.ctx;g.font=`600 ${size}px "IBM Plex Sans", Arial, sans-serif`;const w=g.measureText(s).width+16,h=size+10;
+    g.globalAlpha=0.18*a;g.fillStyle=col;g.beginPath();g.roundRect(x,y,w,h,h/2);g.fill();g.globalAlpha=a;g.fillStyle=col;g.textAlign='left';g.fillText(s,x+8,y+size+1.5);g.globalAlpha=1}
+  dotFlow(a,b,k,col,r,tail=0.18,alpha=1){if(k<=0||k>=1)return;const g=this.ctx;
+    for(let i=0;i<6;i++){const kk=k-tail*i/6;if(kk<0)break;g.globalAlpha=alpha*(1-i/6)*0.9;g.fillStyle=col;g.beginPath();g.arc(a[0]+(b[0]-a[0])*kk,a[1]+(b[1]-a[1])*kk,r*(1-i/9),0,7);g.fill()}
+    g.globalAlpha=1}
+  draw(t,st){
+    const g=this.ctx, {rt=null,z=1,held=0,atm=null,caseId='OL-0417'}=st, s=this.s, sz=s*z, lab=this.opts.labels;
+    g.setTransform(this.dpr,0,0,this.dpr,0,0);
+    g.clearRect(0,0,this.w,this.h);
+    const W=WORLD, P=p=>this.P(p,z);
+    const NP=W.nodes.map(P);
+    g.lineWidth=1;g.strokeStyle=COL.line;g.beginPath();
+    for(const [i,j] of W.edges){const a=NP[i],b=NP[j];g.moveTo(a[0],a[1]);g.lineTo(b[0],b[1])}
+    g.stroke();
+    const fr=Math.max(1.6,2.4*sz);
+    for(const [[i,j],per,off,rev] of W.flows){let a=NP[i],b=NP[j];if(rev)[a,b]=[b,a];this.dotFlow(a,b,((t+off)%per)/1.1,COL.steel,fr,0.18,0.85)}
+    const nr=Math.max(2.4,3.6*sz);
+    W.nodes.forEach((p,k)=>{const [x,y]=NP[k];
+      if(W.squares.has(k)){g.fillStyle=COL.dim;g.beginPath();g.roundRect(x-nr,y-nr,2*nr,2*nr,2);g.fill()}
+      else{g.globalAlpha=0.55;g.fillStyle=COL.steel;g.beginPath();g.arc(x,y,nr,0,7);g.fill();g.globalAlpha=1}});
+    const R={};for(const k in RING)R[k]=P(RING[k]);
+    const det=rt==null?0:prog(rt,DETECT,DETECT+0.6);
+    if(det>0){
+      const hp=hull(ACCTS.map(n=>R[n])), L=this.lctx;
+      const path=c=>{c.beginPath();c.moveTo(hp[0][0],hp[0][1]);for(const p of hp.slice(1))c.lineTo(p[0],p[1]);c.closePath()};
+      L.setTransform(this.dpr,0,0,this.dpr,0,0);L.clearRect(0,0,this.w,this.h);L.lineJoin='round';
+      path(L);L.fillStyle=COL.red;L.strokeStyle=COL.red;L.lineWidth=64*sz;L.fill();L.stroke();
+      g.setTransform(1,0,0,1,0,0);g.globalAlpha=0.10*det;g.drawImage(this.layer,0,0);g.globalAlpha=1;
+      L.clearRect(0,0,this.w,this.h);path(L);L.lineWidth=66*sz;L.stroke();
+      L.globalCompositeOperation='destination-out';L.lineWidth=62*sz;path(L);L.stroke();L.fill();L.globalCompositeOperation='source-over';
+      g.globalAlpha=0.85*det;g.drawImage(this.layer,0,0);g.globalAlpha=1;g.setTransform(this.dpr,0,0,this.dpr,0,0);
+      if(lab&&this.w>=640){const bot=hp.reduce((m,p)=>p[1]>m[1]?p:m,hp[0]);
+        this.text('Ring '+caseId,bot[0]-150*s,bot[1]+54*sz,15,COL.red,600,'left',det);
+        this.text('9 accounts',bot[0]-150*s+112,bot[1]+54*sz,15,COL.muted,400,'left',det);}
+    }
+    const rtt=rt==null?-1:rt;
+    for(const [a,b,t0,d] of REDGES){const k=prog(rtt,t0,t0+d);if(k<=0)continue;
+      let col=b==='P'?COL.red:mix(COL.amber,COL.red,det);
+      const pa=R[a],pb=R[b];g.globalAlpha=0.75;g.strokeStyle=col;g.lineWidth=2.2;g.beginPath();g.moveTo(pa[0],pa[1]);g.lineTo(pa[0]+(pb[0]-pa[0])*k,pa[1]+(pb[1]-pa[1])*k);g.stroke();g.globalAlpha=1;
+      if(k<1)this.dotFlow(pa,pb,k,COL.text,4.2,0.25)}
+    if(atm!=null&&atm>0){const pa=R.L1,pb=R.X,stop=0.78,k=Math.min(atm,stop);
+      g.globalAlpha=0.6;g.strokeStyle=COL.teal;g.lineWidth=2;g.setLineDash([5,5]);g.beginPath();g.moveTo(pa[0],pa[1]);g.lineTo(pa[0]+(pb[0]-pa[0])*k,pa[1]+(pb[1]-pa[1])*k);g.stroke();g.setLineDash([]);g.globalAlpha=1;
+      if(atm<stop)this.dotFlow(pa,pb,k,COL.text,4.2,0.25);
+      else{const x=pa[0]+(pb[0]-pa[0])*stop,y=pa[1]+(pb[1]-pa[1])*stop;g.strokeStyle=COL.red;g.lineWidth=3;g.beginPath();g.moveTo(x-7,y-7);g.lineTo(x+7,y+7);g.moveTo(x-7,y+7);g.lineTo(x+7,y-7);g.stroke()}}
+    for(const [key,label] of [['X','ATM'],['P','POS agent']]){const [x,y]=R[key];g.fillStyle=COL.panel2;g.beginPath();g.roundRect(x-7,y-7,14,14,3);g.fill();g.strokeStyle=COL.muted;g.lineWidth=1.4;g.stroke();
+      if(lab){if(key==='X')this.text(label,x,y-14,13,COL.muted,400,'center');else this.text(label,x+13,y+5,13,COL.muted)}}
+    for(const n of ['V',...ACCTS]){const [x,y]=R[n],col=nodeCol(n,rt),r=n==='V'?7.5:6.5;
+      if(rt!=null){const pu=prog(rt,DETECT,DETECT+0.9);if(pu>0&&pu<1&&n!=='V'){g.globalAlpha=0.5*(1-pu);g.fillStyle=COL.red;g.beginPath();g.arc(x,y,r+22*pu,0,7);g.fill();g.globalAlpha=1}}
+      if(n==='C'&&rt!=null&&rt>1.5){g.globalAlpha=0.25*prog(rt,1.5,2.2);g.fillStyle=col;g.beginPath();g.arc(x,y,r+7,0,7);g.fill();g.globalAlpha=1}
+      g.fillStyle=col;g.beginPath();g.arc(x,y,r,0,7);g.fill();
+      if(held>0&&HELD.includes(n)){g.globalAlpha=held;g.strokeStyle=COL.teal;g.lineWidth=2.4;g.beginPath();g.arc(x,y,r+6,0,7);g.stroke();
+        g.fillStyle=COL.teal;g.lineWidth=1.8;g.beginPath();g.arc(x+13,y-15,4,Math.PI,0);g.stroke();g.beginPath();g.roundRect(x+7,y-15,12,9,2);g.fill();g.globalAlpha=1}}
+    if(rt!=null&&lab){const [vx,vy]=R.V;this.text('Mrs A',vx,vy+26,14,COL.text,500,'center');this.text('other bank',vx,vy+43,12,COL.muted,400,'center');
+      const la=prog(rt,0.6,1.0)*(1-prog(rt,2.1,2.5));if(la>0)this.text('₦850,000',(R.V[0]+R.C[0])/2,(R.V[1]+R.C[1])/2-14,16,COL.text,600,'center',la);
+      const lc=prog(rt,0.8,1.6);if(lc>0&&det<1)this.text('opened 6 days ago',R.C[0]-34,R.C[1]+30,12.5,COL.muted,400,'center',lc*(1-det));
+      const lb=prog(rt,2.4,2.9)*(1-prog(rt,7,7.5));if(lb>0)this.text('5 × ₦170,000',R.C[0]-74,R.C[1]-27,15,COL.amber,600,'center',lb);
+      const lp=prog(rt,5.4,5.9)*(1-prog(rt,DETECT-0.3,DETECT));if(lp>0)this.text('₦165,000 each',R.L2[0]+16,R.L2[1]+5,13.5,COL.amber,500,'left',lp);
+      const lq=prog(rt,8,8.4);if(lq>0)this.text('₦170,000 cashed out',R.P[0]-6,R.P[1]+26,13,COL.red,500,'left',lq);
+      if(det>0)this.pill('risk 0.94',R.C[0]-22,R.C[1]+16,12.5,COL.red,det);}
+  }
+}
+
+/* ---------------- hero preview ---------------- */
+const heroCanvas=document.getElementById('hero-canvas'), heroStatus=document.getElementById('hero-status');
+const hero=new GraphView(heroCanvas,{labels:true,scale:1.0});
+const HQ=2.5, HCYCLE=26;
+function heroFrame(t){
+  const c=t%HCYCLE, rt=c<HQ?null:c-HQ;
+  const fade=prog(c,HCYCLE-1.2,HCYCLE);
+  const z=rt==null?1:1+(ZMAX-1)*ease(prog(rt,11.4,13.4));
+  hero.draw(t,{rt,z});
+  if(fade>0){const g=hero.ctx;g.fillStyle=`rgba(26,43,58,${fade})`;g.fillRect(0,0,hero.w,hero.h)}
+  let msg='Watching 50,000 accounts. Every transfer is being scored.',alert=false;
+  if(rt!=null&&rt<2.2)msg='₦850,000 lands in an account opened six days ago.';
+  else if(rt!=null&&rt<5)msg='It splits five ways in seconds.';
+  else if(rt!=null&&rt<DETECT)msg='It hops again. One mule cashes out at a POS. No rule fires.';
+  else if(rt!=null){msg='Mule ring detected: 9 accounts, flagged 3.1 s after the pattern completed.';alert=true}
+  if(heroStatus.textContent!==msg){heroStatus.textContent=msg;heroStatus.classList.toggle('alert',alert)}
+}
+
+/* ---------------- demo controller ---------------- */
+const $=id=>document.getElementById(id);
+const gv=new GraphView($('c-canvas'),{labels:true});
+const fmt=sec=>{sec=Math.floor(sec);const h=Math.floor(sec/3600)%24,m=Math.floor(sec/60)%60,s=sec%60;return [h,m,s].map(v=>String(v).padStart(2,'0')).join(':')};
+const hm=sec=>fmt(sec).slice(0,5);
+const hash=()=>{const h='0123456789abcdef';let a='',b='';for(let i=0;i<4;i++){a+=h[Math.floor(Math.random()*16)]}for(let i=0;i<2;i++)b+=h[Math.floor(Math.random()*16)];return a+'..'+b};
+
+const D={phase:'quiet',st:0,rt:0,ct:0,at:0,ft:0,speed:1,paused:reduceMotion,auto:true,narr:true,view:'monitor',
+  clock:19*3600+41*60+30, seq:417, cases:[], audit:[], active:null, flags:{}};
+const Q=6;
+
+function resetScenario(next){
+  if(next)D.seq++;
+  D.phase='quiet';D.st=0;D.rt=0;D.ct=0;D.at=0;D.ft=0;D.flags={};
+  D.cases=D.cases.filter(c=>c.status!=='open'&&c.status!=='review');
+  if(!next){D.seq=417;D.cases=[{id:'OL-0416',status:'closed',note:'Closed, no action. Payroll run'},{id:'OL-0415',status:'closed',note:'Closed, report filed'}];D.audit=[];D.clock=19*3600+41*60+30}
+  D.active=null; renderQueue(); setView('monitor'); updateBanners(true);
+}
+function addAudit(who,what,ref,caseId){D.audit.push({t:D.clock,who,what,ref,caseId,h:hash()});renderAuditIfOpen()}
+
+function onDetect(){
+  const c={id:'OL-0'+D.seq,status:'open',opened:D.clock,inflow:D.clock-55,note:'Mule ring, fan-out then pass-through',decision:null};
+  D.cases.unshift(c);D.active=c;D.flags.detect=true;renderQueue();
+  addAudit('system','ring flagged','9 accounts, risk 0.94',c.id);
+}
+function openCase(){
+  if(!D.active)return;
+  if(D.phase==='ring'){D.phase='case';D.ct=0}
+  setView('case');
+}
+function approve(auto){
+  const c=D.active;if(!c||c.decision)return;
+  c.decision='hold';c.status='hold';c.holdAt=D.clock;
+  addAudit('officer','hold approved',auto?'Demo officer, O-112':'You, O-101',c.id);
+  addAudit('system','hold placed','4 accounts, 24 h, ends itself',c.id);
+  D.phase='approved';D.at=0;renderQueue();renderCase(true);
+}
+function reject(){
+  const c=D.active;if(!c||c.decision)return;
+  c.decision='reject';c.status='closed';c.note='Closed, no action (officer rejected)';
+  addAudit('officer','proposal rejected','You, O-101',c.id);
+  D.phase='rejected';D.at=0;renderQueue();renderCase(true);
+}
+
+/* narration */
+function narration(){
+  if(D.phase==='quiet')return 'Oluso reads every transfer as a live graph of accounts, scored the moment each one lands.';
+  if(D.phase==='ring'){const r=D.rt;
+    if(r<5)return 'A cloned voice. Mrs A sends ₦850,000. It lands in a 6-day-old account, then splits five ways in seconds.';
+    if(r<DETECT)return 'It hops again to hide the trail. One mule cashes out at a POS. No single rule fires.';
+    return 'Oluso sees the shape, not the single transfer. The whole ring lights up and a case opens.';}
+  if(D.phase==='case'){return D.ct<9?'An investigator agent drafts the case. Every claim points to a real transaction.':'It explains the score and proposes one action. It has no power to act on its own. You make the call.'}
+  if(D.phase==='approved')return 'A named officer approves. Policy checks the limits, and every step goes on a log nobody can edit.';
+  if(D.phase==='after')return D.ft<4?'Minutes later a mule tries to withdraw at an ATM. Declined.':'Most of the money is still in the bank when Mrs A calls in the morning.';
+  if(D.phase==='rejected')return 'Rejected. Nothing happens to the accounts, and the decision is logged.';
+  return '';
+}
+
+/* ---------- views ---------- */
+const main=$('c-main'), vGraph=$('v-graph'), vQueue=$('v-queue');
+let extra=null;
+function setView(v){
+  D.view=v;
+  document.querySelectorAll('.c-tabs button').forEach(b=>b.setAttribute('aria-selected',String(b.dataset.view===(v==='case'?'cases':v))));
+  if(extra){extra.remove();extra=null}
+  const mon=v==='monitor';
+  vGraph.style.display=mon?'':'none';vQueue.style.display=mon?'':'none';
+  if(v==='case'){extra=document.createElement('div');extra.className='case-view';main.appendChild(extra);renderCase(true)}
+  if(v==='cases'){extra=document.createElement('div');extra.className='panel list-view';main.appendChild(extra);renderCaseList()}
+  if(v==='audit'){extra=document.createElement('div');extra.className='panel list-view';main.appendChild(extra);renderAudit()}
+  if(mon)requestAnimationFrame(()=>gv.resize());
+}
+document.querySelectorAll('.c-tabs button').forEach(b=>b.addEventListener('click',()=>{const v=b.dataset.view;
+  if(v==='cases'&&D.active&&D.flags.detect)setView('case');else setView(v)}));
+
+function statusPill(c){
+  if(c.status==='hold')return `<span class="pill teal">Hold active, ends ${hm(c.holdAt)} tomorrow</span>`;
+  if(c.status==='closed')return `<span class="pill muted">Closed</span>`;
+  if(D.flags.action&&c===D.active)return `<span class="pill amber">Waiting for an officer</span>`;
+  return `<span class="pill amber">Agent drafting the case</span>`;
+}
+const seenCards=new Set();
+function renderQueue(){
+  const q=$('queue');
+  const act=D.cases.filter(c=>c.status!=='closed'||c===D.active);
+  const closed=D.cases.filter(c=>c.status==='closed'&&c!==D.active);
+  let h='';
+  if(!act.length){h+=`<div class="qempty"><p>No open cases.</p><small>Every transfer is being scored.</small></div>`}
+  for(const c of act){const enter=!seenCards.has(c.id);seenCards.add(c.id);h+=`<button class="qcard active ${c.status==='hold'?'held':''} ${enter?'enter':''}" data-case="${c.id}"><div class="row"><h3>Case ${c.id}</h3><span class="pill red">0.94</span></div><p>${c.note}</p><div class="facts"><span>9 accounts</span><span>₦850,000 moved</span></div><p>Opened ${fmt(c.opened)}</p><div style="margin-top:8px">${statusPill(c)}</div></button>`}
+  for(const c of closed.slice(0,4)){h+=`<button class="qcard closed" data-case="${c.id}"><h3>Case ${c.id}</h3><p>${c.note}</p></button>`}
+  q.innerHTML=h;
+  q.querySelectorAll('.qcard.active').forEach(b=>b.addEventListener('click',()=>openCase()));
+  $('s-open').textContent=D.cases.filter(c=>c.status==='open'||c.status==='hold').length;
+  $('s-open').classList.toggle('hot',D.cases.some(c=>c.status==='open'||c.status==='hold'));
+  if(D.view==='cases')renderCaseList();
+}
+function renderCaseList(){
+  if(!extra||D.view!=='cases')return;
+  const rows=D.cases.map(c=>`<tr class="${c===D.active?'click':''}" data-case="${c.id}"><td class="mono">${c.id}</td><td>${c.note}</td><td>${c.opened?fmt(c.opened):'Earlier today'}</td><td>${c.status==='hold'?'Hold active':c.status==='closed'?'Closed':'Open'}</td></tr>`).join('');
+  extra.innerHTML=`<table><thead><tr><th>Case</th><th>Summary</th><th>Opened</th><th>Status</th></tr></thead><tbody>${rows}</tbody></table>`;
+  extra.querySelectorAll('tr.click').forEach(r=>r.addEventListener('click',()=>openCase()));
+}
+function renderAudit(){
+  if(!extra||D.view!=='audit')return;
+  if(!D.audit.length){extra.innerHTML=`<div class="list-empty">No entries yet. Every agent step, approval and action will appear here.</div>`;return}
+  const rows=[...D.audit].reverse().map(e=>`<tr><td class="mono">${fmt(e.t)}</td><td class="mono" style="color:${e.who==='officer'||e.who==='system'?'#2FC4A0':'#EAF0F4'}">${e.who}</td><td>${e.what}</td><td>${e.ref}</td><td class="mono">${e.caseId}</td><td class="mono" style="color:#5F768A">${e.h}</td></tr>`).join('');
+  extra.innerHTML=`<table><thead><tr><th>Time</th><th>Actor</th><th>Event</th><th>Detail</th><th>Case</th><th>Chain</th></tr></thead><tbody>${rows}</tbody></table>`;
+}
+function renderAuditIfOpen(){if(D.view==='audit')renderAudit();if(D.view==='case')renderCaseAudit()}
+
+/* case view */
+const NARR=[["At",0],["{T}",0],["an account opened 6 days ago received ₦850,000 from a first-time sender",0],["[T-88213].",1],
+ ["Within 30 seconds it sent five transfers of ₦170,000 to accounts it had never paid before",0],["[T-88214..18].",1],
+ ["Three of them passed 97% on within a minute",0],["[T-88231].",1],["One cashed out at a POS agent before the alert",0],["[T-88240].",1],
+ ["Four of the nine accounts sign in from the same phone",0],["[D-5521].",1]];
+let narrShown=-1;
+function miniRingSVG(held){
+  const keys=[...ACCTS,'P'], xs=keys.map(k=>RING[k][0]), ys=keys.map(k=>RING[k][1]);
+  const x0=Math.min(...xs)-50,y0=Math.min(...ys)-50,w=Math.max(...xs)-x0+90,h=Math.max(...ys)-y0+70;
+  const p=k=>RING[k];
+  const hp=hull(ACCTS.map(p)).map(q=>q.join(',')).join(' ');
+  let s=`<svg viewBox="${x0} ${y0} ${w} ${h}" preserveAspectRatio="xMidYMid meet" role="img" aria-label="The ring: one collector, five mules and three second-hop accounts">`;
+  s+=`<g opacity=".1"><polygon points="${hp}" fill="#E8484E" stroke="#E8484E" stroke-width="56" stroke-linejoin="round"/></g>`;
+  for(const [a,b] of REDGES.slice(1)){s+=`<line x1="${p(a)[0]}" y1="${p(a)[1]}" x2="${p(b)[0]}" y2="${p(b)[1]}" stroke="#E8484E" stroke-opacity=".7" stroke-width="2.2"/>`}
+  s+=`<rect x="${p('P')[0]-7}" y="${p('P')[1]-7}" width="14" height="14" rx="3" fill="#22374A" stroke="#93A7B8"/><text x="${p('P')[0]+13}" y="${p('P')[1]+5}" fill="#93A7B8" font-size="13" font-family="IBM Plex Sans, Arial">POS</text>`;
+  for(const n of ACCTS){s+=`<circle cx="${p(n)[0]}" cy="${p(n)[1]}" r="8" fill="#E8484E"/>`;
+    if(held&&HELD.includes(n))s+=`<circle cx="${p(n)[0]}" cy="${p(n)[1]}" r="14" fill="none" stroke="#2FC4A0" stroke-width="2.5"/>`}
+  for(const [k,t] of [['C','Collector'],['M3','Mules'],['L2','Second hop']])s+=`<text x="${p(k)[0]}" y="${p(k)[1]+30}" fill="#93A7B8" font-size="13" font-weight="500" text-anchor="middle" font-family="IBM Plex Sans, Arial">${t}</text>`;
+  return s+'</svg>';
+}
+function renderCase(full){
+  if(D.view!=='case'||!extra||!D.active)return;
+  const c=D.active, held=c.status==='hold';
+  if(full){
+    narrShown=-1;
+    extra.innerHTML=`<div class="case-head"><div><h2>Case ${c.id} <span class="pill red" style="vertical-align:middle">Risk 0.94</span></h2><div class="sub">Mule ring, fan-out then pass-through. Opened ${fmt(c.opened)} by Oluso.</div></div>
+      <div class="money"><b class="${held?'held':''}" id="cv-money">${held?'₦665,000 on hold in 4 accounts':'₦665,000 still in 4 accounts'}</b><span>₦170,000 already cashed out</span></div></div>
+      <div class="case-body">
+        <div class="panel case-ring"><h3>The ring</h3><div class="small">9 accounts, 10 transfers, 51 seconds</div>${miniRingSVG(held)}<div class="heldnote">${held?'Outbound transfers held on 4 accounts':''}</div></div>
+        <div class="panel case-right">
+          <div class="hd"><h3>Investigator's summary</h3><small>Drafted by the agent</small></div>
+          <p class="narrative" id="cv-narr"></p>
+          <div id="cv-mid"></div>
+          <div class="action" id="cv-action"></div>
+        </div>
+      </div>`;
+    renderCaseMid();renderAction();
+  }
+}
+function renderCaseMid(){
+  const mid=$('cv-mid');if(!mid)return;
+  const c=D.active;
+  if(c&&c.decision){renderCaseAudit();return}
+  mid.innerHTML=`<div class="hd"><h3>Why the score is high</h3></div><div class="drivers" id="cv-drv">
+   ${[['Big amount in, then a burst out',0.92],['Account opened 6 days ago',0.70],['Money passed on, little left behind',0.62],['One phone across 4 accounts',0.45]].map(([l,v])=>`<div class="drv"><span>${l}</span><div class="track"><div class="fill" data-w="${v}"></div></div></div>`).join('')}</div>`;
+  if(D.flags.drivers)showDrivers();
+}
+function showDrivers(){const d=$('cv-drv');if(!d)return;d.classList.add('show');d.querySelectorAll('.fill').forEach(f=>f.style.width=(f.dataset.w*100)+'%')}
+function renderCaseAudit(){
+  const mid=$('cv-mid');if(!mid||!D.active)return;
+  const rows=D.audit.filter(e=>e.caseId===D.active.id).map(e=>`<div class="r"><span>${fmt(e.t)}</span><span class="who ${e.who==='officer'||e.who==='system'?'off':''}">${e.who}</span><span>${e.what}</span><span class="m">${e.ref}</span><span class="h">${e.h}</span></div>`).join('');
+  mid.innerHTML=`<div class="hd"><h3>Audit log</h3><small>Append-only, each line chained to the last</small></div><div class="audit-mini">${rows}</div>`;
+}
+function renderAction(){
+  const a=$('cv-action');if(!a||!D.active)return;
+  const c=D.active;
+  if(!D.flags.action){a.className='action';a.innerHTML='';return}
+  if(c.decision==='hold'){a.className='action show done';a.innerHTML=`<div><div class="lbl">Action taken</div><h4>Hold outbound transfers on 4 accounts for 24 hours</h4><p>The agent can only propose. An officer decided.</p></div><div class="state">Hold active<small>ends ${hm(c.holdAt)} tomorrow</small></div>`;return}
+  if(c.decision==='reject'){a.className='action show rejected';a.innerHTML=`<div><div class="lbl">Proposal rejected</div><h4>No action on the accounts</h4><p>The case is closed and the decision is logged.</p></div><div class="state grey">Closed</div>`;return}
+  a.className='action show';
+  a.innerHTML=`<div><div class="lbl">Proposed action</div><h4>Hold outbound transfers on 4 accounts for 24 hours</h4><p>The agent can only propose. An officer decides.</p></div>
+   <div class="btns"><button class="approve" id="cv-approve">Approve hold</button><button class="reject" id="cv-reject">Reject</button><div class="auto" id="cv-auto"></div></div>`;
+  $('cv-approve').addEventListener('click',()=>approve(false));
+  $('cv-reject').addEventListener('click',()=>reject());
+}
+function updateCaseTyping(){
+  const el=$('cv-narr');if(!el)return;
+  const typed=D.active&&D.active.decision?9999:Math.max(0,Math.floor((D.ct-1.0)*62));
+  if(typed===narrShown)return;narrShown=typed;
+  let left=typed,h='';const inflow=D.active?hm(D.active.inflow):'19:42';
+  for(const [w0,cite] of NARR){if(left<=0)break;const w=w0==='{T}'?inflow:w0;const show=w.slice(0,left);left-=w.length+1;
+    h+=cite?`<span class="cite">${show}</span> `:`${show} `}
+  const total=NARR.reduce((s,[w])=>s+w.length+1,0);
+  if(typed<total)h+='<span class="caret"></span>';
+  el.innerHTML=h;
+}
+
+/* banners */
+function updateBanners(force){
+  const ba=$('b-alert'),hc=$('held-card');
+  let show=false,head='Mule ring detected',txt='';
+  if(D.phase==='ring'&&D.rt>=DETECT+0.1||D.phase==='case'){show=true;txt='9 accounts, ₦850,000 in 51 seconds. Flagged 3.1 s after the pattern completed.'}
+  if(D.phase==='after'&&D.ft>=2.5){show=true;head='ATM withdrawal declined';txt=`${fmt(D.flags.atmAt||D.clock)}. The account is under the hold the officer approved.`}
+  if(D.phase==='rejected'){show=true;head='Proposal rejected';txt='No action taken. The decision is on the audit log.'}
+  ba.classList.toggle('show',show);
+  if($('b-alert-h').textContent!==head)$('b-alert-h').textContent=head;
+  if($('b-alert-t').textContent!==txt)$('b-alert-t').textContent=txt;
+  hc.classList.toggle('show',D.phase==='after'&&D.ft>=4);
+}
+
+/* ---------- main loop ---------- */
+let last=performance.now(), T=0, statTick=0;
+function step(now){
+  const dt=Math.min(0.05,(now-last)/1000);last=now;
+  if(!document.body.classList.contains('in-demo')){
+    if(!reduceMotion){T+=dt;heroFrame(T)}
+    requestAnimationFrame(step);return;
+  }
+  if(!D.paused){
+    const d=dt*D.speed;T+=d;
+    if(D.phase==='quiet'){D.st+=d;D.clock+=d*6;if(D.st>=Q){D.phase='ring';D.rt=0}}
+    else if(D.phase==='ring'){D.rt+=d;D.clock+=d*6;
+      if(!D.flags.detect&&D.rt>=DETECT)onDetect();
+      if(D.rt>=DETECT+5.5&&D.view!=='case')openCase();
+      if(D.rt>=DETECT+5.5&&D.view==='case'){}}
+    else if(D.phase==='case'){D.ct+=d;D.clock+=d*3;
+      if(!D.flags.drafted&&D.ct>=7.2){D.flags.drafted=true;addAudit('agent','case drafted',D.active.id,D.active.id)}
+      if(!D.flags.drivers&&D.ct>=7.6){D.flags.drivers=true;showDrivers()}
+      if(!D.flags.action&&D.ct>=10){D.flags.action=true;addAudit('policy','proposal checked','4 accounts in ring',D.active.id);renderAction();renderQueue()}
+      if(D.flags.action&&D.auto){const left=Math.ceil(16.5-D.ct);const el=$('cv-auto');if(el)el.textContent=left>0?`Demo officer approves in ${left}s`:'';if(D.ct>=16.5)approve(true)}
+      else{const el=$('cv-auto');if(el)el.textContent=''}}
+    else if(D.phase==='approved'){D.at+=d;D.clock+=d;if(D.at>=4.5){D.phase='after';D.ft=0;setView('monitor')}}
+    else if(D.phase==='after'){D.ft+=d;D.clock+=d*2;
+      if(!D.flags.atm&&D.ft>=2.6){D.flags.atm=true;D.flags.atmAt=D.clock;addAudit('system','ATM withdrawal declined','hold active',D.active.id)}
+      if(D.ft>=16)resetScenario(true)}
+    else if(D.phase==='rejected'){D.at+=d;D.clock+=d;if(D.at>=3&&D.view==='case')setView('monitor');if(D.at>=11)resetScenario(true)}
+  }
+  // graph state
+  let rt=null,z=1,held=0,atm=null;
+  if(D.phase==='ring'){rt=D.rt;z=1+(ZMAX-1)*ease(prog(rt,11.4,13.4))}
+  else if(D.phase==='case'||D.phase==='approved'||D.phase==='rejected'){rt=20;z=ZMAX}
+  else if(D.phase==='after'){rt=20;z=ZMAX;held=1;atm=prog(D.ft,1.0,2.6)}
+  if(D.view==='monitor')gv.draw(T,{rt,z,held,atm,caseId:D.active?D.active.id:'OL-0'+D.seq});
+  if(D.view==='case')updateCaseTyping();
+  updateBanners();
+  const n=D.narr?narration():'';const ne=$('narr');if(ne.textContent!==n)ne.textContent=n;
+  $('s-clock').textContent=fmt(D.clock);
+  statTick+=dt;if(statTick>0.5){statTick=0;$('s-eps').textContent=196+Math.floor(Math.random()*12)}
+  requestAnimationFrame(step);
+}
+
+/* controls */
+$('k-play').addEventListener('click',()=>{D.paused=!D.paused;$('k-play').textContent=D.paused?'Play':'Pause'});
+$('k-restart').addEventListener('click',()=>{resetScenario(false);if(D.paused){D.paused=false;$('k-play').textContent='Pause'}});
+$('k-speed').addEventListener('click',()=>{D.speed=D.speed===1?2:1;$('k-speed').textContent=D.speed+'x'});
+$('k-narr').addEventListener('change',e=>{D.narr=e.target.checked});
+$('k-auto').addEventListener('change',e=>{D.auto=e.target.checked});
+$('k-play').textContent=D.paused?'Play':'Pause';
+
+/* routing */
+function route(){
+  const demo=location.hash==='#demo';
+  document.body.classList.toggle('in-demo',demo);
+  if(demo){requestAnimationFrame(()=>{gv.resize();})}
+}
+window.addEventListener('hashchange',route);
+
+const ready=document.fonts&&document.fonts.load?Promise.all([document.fonts.load('500 15px "IBM Plex Sans"'),document.fonts.load('600 15px "IBM Plex Sans"')]).catch(()=>{}):Promise.resolve();
+ready.then(()=>{
+  resetScenario(false);route();
+  if(reduceMotion)hero.draw(0,{rt:12,z:1});
+  requestAnimationFrame(t=>{last=t;step(t)});
+});
+})();
+</script>
+</body>
+</html>
